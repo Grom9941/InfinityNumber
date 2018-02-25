@@ -49,7 +49,7 @@ public class Main {
     }
 
     //Сложение
-    private Main plus(Main num) {
+    public Main plus(Main num) {
 
         if (this.number.size() > num.number.size()) {
             num.number = add0(this.number.size() - num.number.size(), num.number);
