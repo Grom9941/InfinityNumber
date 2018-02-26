@@ -8,7 +8,7 @@ public class Main {
     private ArrayList<Integer> number = new ArrayList<>();
 
     //Преобразование в массив
-    public Main(String str) {
+    Main(String str) {
         boolean zero = true;
 
         for (int i = 0; i < str.length(); i++) {
@@ -23,7 +23,7 @@ public class Main {
     }
 
     //Преобразование в строку
-    public Main(ArrayList<Integer> array) {
+    private String Main(ArrayList<Integer> array) {
         boolean zero = true;
         StringBuilder str = new StringBuilder();
 
@@ -35,7 +35,7 @@ public class Main {
             }
         }
 
-        // return str.toString();
+        return str.toString();
     }
 
     //Добавление в начало массива 0
@@ -49,7 +49,7 @@ public class Main {
     }
 
     //Сложение
-    public Main plus(Main num) {
+    public String plus(Main num) {
 
         if (this.number.size() > num.number.size()) {
             num.number = add0(this.number.size() - num.number.size(), num.number);
@@ -68,20 +68,27 @@ public class Main {
         }
 
         if (ost != 0) this.number.add(0, ost);
-        return new Main(this.number);
+        return Main(this.number);
     }
 
     //Замена символа
+    private ArrayList<Integer> change(int i, ArrayList<Integer> array, int value){
+
+        array.remove(i);
+        array.add(i, value);
+
+        return array;
+    }
 
 
     //Вычитание
-    private Main minus(Main num) {
+    public String minus(Main num) {
 
         int value;
         int ost;
         int compareNumber = new Main(this.number.toString()).compare(new Main(num.number.toString()));
 
-        if (compareNumber == 0) return new Main("0");
+        if (compareNumber == 0) return "0";
         if (compareNumber == 2) {
 
             ArrayList<Integer> changeArray = this.number;
@@ -90,65 +97,59 @@ public class Main {
             num.number = changeArray;
         }
 
+        num.number = add0(this.number.size() - num.number.size(), num.number);
+
         for (int i = this.number.size() - 1; i >= 0; i--) {
 
             if (this.number.get(i) >= num.number.get(i)) {
 
                 value = this.number.get(i) - num.number.get(i);
+                this.number = change(i,this.number,value);
 
-                this.number.remove(i);
-                this.number.add(i, value);
             } else {
 
                 value = 10 + this.number.get(i) - num.number.get(i);
                 int j = i - 1;
                 ost = 9;
-
-                this.number.remove(i);
-                this.number.add(i, value);
+                this.number = change(i,this.number,value);
 
                 while (this.number.get(j) == 0) {
 
                     value = ost + this.number.get(j);
-
-                    this.number.remove(j);
-                    this.number.add(j, value);
+                    this.number = change(j,this.number,value);
                     j--;
                 }
 
                 value = this.number.get(j) - 1;
-
-                this.number.remove(j);
-                this.number.add(j, value);
+                this.number = change(j,this.number,value);
             }
         }
-        if (compareNumber == 2) return //"-"
-                new Main(this.number);
+        if (compareNumber == 2) return "-" + Main(this.number);
 
-        return new Main(this.number);
+        return Main(this.number);
     }
 
 
     //Максимальное
-    private Main max(Main num) {
+    public String max(Main num) {
 
         int compareNumber = new Main(this.number.toString()).compare(new Main(num.number.toString()));
 
-        if (compareNumber == 1) return new Main(this.number);
-        if (compareNumber == 2) return new Main(num.number);
+        if (compareNumber == 1) return Main(this.number);
+        if (compareNumber == 2) return Main(num.number);
 
-        return new Main("Нет максимального");
+        return "Одинаковые числа";
     }
 
     //Минимальное
-    private Main min(Main num) {
+    public String min(Main num) {
 
         int compareNumber = new Main(this.number.toString()).compare(new Main(num.number.toString()));
 
-        if (compareNumber == 1) return new Main(num.number);
-        if (compareNumber == 2) return new Main(this.number);
+        if (compareNumber == 1) return Main(num.number);
+        if (compareNumber == 2) return Main(this.number);
 
-        return new Main("Нет минимального");
+        return "Одинаковые числа";
     }
 
     //Сравнение
