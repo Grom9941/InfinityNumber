@@ -74,7 +74,7 @@ public class Main {
     }
 
     //Замена символа
-    private ArrayList<Integer> change(int i, ArrayList<Integer> array, int value){
+    private ArrayList<Integer> change(int i, ArrayList<Integer> array, int value) {
 
         array.remove(i);
         array.add(i, value);
@@ -106,24 +106,24 @@ public class Main {
             if (this.number.get(i) >= num.number.get(i)) {
 
                 value = this.number.get(i) - num.number.get(i);
-                this.number = change(i,this.number,value);
+                this.number = change(i, this.number, value);
 
             } else {
 
                 value = 10 + this.number.get(i) - num.number.get(i);
                 int j = i - 1;
                 ost = 9;
-                this.number = change(i,this.number,value);
+                this.number = change(i, this.number, value);
 
                 while (this.number.get(j) == 0) {
 
                     value = ost + this.number.get(j);
-                    this.number = change(j,this.number,value);
+                    this.number = change(j, this.number, value);
                     j--;
                 }
 
                 value = this.number.get(j) - 1;
-                this.number = change(j,this.number,value);
+                this.number = change(j, this.number, value);
             }
         }
         if (compareNumber == 2) return "-" + Main(this.number);
@@ -132,10 +132,10 @@ public class Main {
     }
 
     //Умножение
-    public String multiplication(Main num){
+    public String multiplication(Main num) {
 
         ArrayList<Integer> intermediate = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100000000; i++) {
             intermediate.add(-1);
         }
 
@@ -153,23 +153,60 @@ public class Main {
             num.number = changeArray;
         }
 
-        for (int i = num.number.size()-1; i >= 0; i--) {
+        for (int i = num.number.size() - 1; i >= 0; i--) {
 
             place = placenumber;
-            for (int j = this.number.size()-1; j >= 0; j--){
-                if (intermediate.get(place) == -1) getres=0; else getres = intermediate.get(place);
-                    value = getres + this.number.get(j) * num.number.get(i);
-                    intermediate = change(place,intermediate,value % 10);
-                    place++;
-                    if (value > 10) { intermediate = change(place,intermediate,value/10); }
+            for (int j = this.number.size() - 1; j >= 0; j--) {
 
+                if (intermediate.get(place) == -1) getres = 0;
+                else getres = intermediate.get(place);
+
+                value = getres + this.number.get(j) * num.number.get(i);
+                intermediate = change(place, intermediate, value % 10);
+                place++;
+
+                if (value > 10) {
+                    intermediate = change(place, intermediate, value / 10);
                 }
             }
+            placenumber++;
+        }
         ArrayList<Integer> result = new ArrayList<>();
-        while (place > 0) { result.add(intermediate.get(place-1)); place--;}
+        while (place > 0) {
+            result.add(intermediate.get(place - 1));
+            place--;
+        }
         return Main(result);
+    }
+
+    //Деление (целая часть)
+    public long whole(Main num) {
+
+        long whole = 0;
+        int compareNumber = new Main(this.number.toString()).compare(new Main(num.number.toString()));
+
+        while (compareNumber == 1 || compareNumber == 0) {
+            this.number = new Main(new Main(Main(this.number)).minus(new Main(Main(num.number)))).number;
+            whole++;
+            compareNumber = new Main(this.number.toString()).compare(new Main(num.number.toString()));
         }
 
+        return whole;
+    }
+
+    //Деление (остаток)
+    public String residue(Main num) {
+
+        int compareNumber = new Main(this.number.toString()).compare(new Main(num.number.toString()));
+
+        while (compareNumber == 1 || compareNumber == 0) {
+            this.number = new Main(new Main(Main(this.number)).minus(new Main(Main(num.number)))).number;
+            compareNumber = new Main(this.number.toString()).compare(new Main(num.number.toString()));
+        }
+
+        if (this.number.size() == 0) return "0";
+        return Main(this.number);
+    }
 
     //Максимальное
     public String max(Main num) {
