@@ -1,5 +1,7 @@
 import java.util.*;
 
+import static java.lang.Integer.MAX_VALUE;
+
 public class Main {
     // public static void main(String[] args) {
     //      System.out.println(new Main("9174").plus(new Main("9173")));
@@ -128,6 +130,45 @@ public class Main {
 
         return Main(this.number);
     }
+
+    //Умножение
+    public String multiplication(Main num){
+
+        ArrayList<Integer> intermediate = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            intermediate.add(-1);
+        }
+
+        int compareNumber = new Main(this.number.toString()).compare(new Main(num.number.toString()));
+        int value;
+        int placenumber = 0;
+        int place = 0;
+        int getres;
+
+        if (compareNumber == 2) {
+
+            ArrayList<Integer> changeArray = this.number;
+
+            this.number = num.number;
+            num.number = changeArray;
+        }
+
+        for (int i = num.number.size()-1; i >= 0; i--) {
+
+            place = placenumber;
+            for (int j = this.number.size()-1; j >= 0; j--){
+                if (intermediate.get(place) == -1) getres=0; else getres = intermediate.get(place);
+                    value = getres + this.number.get(j) * num.number.get(i);
+                    intermediate = change(place,intermediate,value % 10);
+                    place++;
+                    if (value > 10) { intermediate = change(place,intermediate,value/10); }
+
+                }
+            }
+        ArrayList<Integer> result = new ArrayList<>();
+        while (place > 0) { result.add(intermediate.get(place-1)); place--;}
+        return Main(result);
+        }
 
 
     //Максимальное
