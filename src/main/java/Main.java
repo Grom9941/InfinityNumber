@@ -15,7 +15,7 @@ public class Main {
 
         for (int i = 0; i < str.length(); i++) {
 
-            //if (!Character.isDigit(str.charAt(i))) throw new IllegalArgumentException();
+           // if (Character.isDigit(str.charAt(i))) throw new IllegalArgumentException();
 
             if (str.charAt(i) != '0' || !zero) {
                 number.add(Character.getNumericValue(str.charAt(i)));
