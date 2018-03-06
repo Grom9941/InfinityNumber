@@ -7,7 +7,8 @@ public class TestNumber {
     public void plus(){
         Main number1 = new Main("222");
         Main number2 = new Main("3");
-        assertEquals("225",number1.plus(number2));
+        Main number3 = new Main("1");
+        assertEquals("226",number1.plus(number2));
     }
 
     @Test

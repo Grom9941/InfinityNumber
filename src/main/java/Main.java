@@ -135,7 +135,7 @@ public class Main {
     public String multiplication(Main num) {
 
         ArrayList<Integer> intermediate = new ArrayList<>();
-        for (int i = 0; i < 100000000; i++) {
+        for (int i = 0; i < this.number.size()*num.number.size()+1; i++) {
             intermediate.add(-1);
         }
 
