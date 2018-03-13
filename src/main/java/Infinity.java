@@ -7,7 +7,7 @@ public class Infinity implements Comparable<Infinity>{
     /**
      * Преобразование в массив
      */
-    public Infinity(String string) {
+    Infinity(String string) {
         boolean zero = true;
 
         for (int i = 0; i < string.length(); i++) {
@@ -144,7 +144,6 @@ public class Infinity implements Comparable<Infinity>{
             intermediate.add((byte) -1);
         }
 
-        int compareNumber = new Infinity(this.number.toString()).compareTo(new Infinity(number1.number.toString()));
         int value;
         int placeNumber = 0;
         int place = 0;
@@ -197,7 +196,7 @@ public class Infinity implements Comparable<Infinity>{
     public String residue(Infinity number1) {
 
         long whole = new Infinity(this.number.toString()).whole(new Infinity(number1.number.toString()));
-       
+
         for (int i = 0; i < whole; i++){
 
             this.number = new Infinity(new Infinity(Main(this.number)).minus(new Infinity(Main(number1.number)))).number;
@@ -215,12 +214,6 @@ public class Infinity implements Comparable<Infinity>{
         if (compareNumber > 0) return Main(this.number);
         if (compareNumber < 0) return Main(number1.number);
 
-        if (compareNumber < 0) {
-            ArrayList<Byte> changeArray = this.number;
-
-            this.number = number1.number;
-            number1.number = changeArray;
-        }
         return "Одинаковые числа";
     }
 
