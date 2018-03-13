@@ -12,9 +12,19 @@ public class TestNumber {
 
     @Test
     public  void minus(){
-        Infinity number1 = new Infinity("277");
+        Infinity number1 = new Infinity("200");
         Infinity number2 = new Infinity("77");
-        assertEquals("200",number1.minus(number2));
+        assertEquals("123",number1.minus(number2));
+
+        try
+        {
+            new Infinity("1").minus(new Infinity("222"));
+            assertTrue(false);
+        }
+        catch(IllegalArgumentException e)
+        {
+            assertTrue(true);
+        }
     }
 
     @Test
@@ -29,10 +39,6 @@ public class TestNumber {
         Infinity number1 = new Infinity("222");
         Infinity number2 = new Infinity("122");
         assertEquals("122",number1.min(number2));
-    //    try {
-    //        new Main("!99");
-    //    } catch (IllegalArgumentException)
-     //   assertEquals(IllegalArgumentException.class, () ->new Main("56789."));
     }
 
     @Test

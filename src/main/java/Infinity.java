@@ -12,7 +12,7 @@ public class Infinity implements Comparable<Infinity> {
 
         for (int i = 0; i < string.length(); i++) {
 
-            if (Character.isDigit(string.charAt(i))) throw new IllegalArgumentException("Не правильная запись числа");
+            //if (Character.isDigit(string.charAt(i))) throw new IllegalArgumentException("Не правильная запись числа");
 
             if (string.charAt(i) != '0' || !zero) {
                 number.add((byte) Character.getNumericValue(string.charAt(i)));
@@ -191,7 +191,9 @@ public class Infinity implements Comparable<Infinity> {
         return whole;
     }
 
-    //Деление (остаток)
+    /**
+     * Деление (остаток)
+     */
     public String residue(Infinity number1) {
 
         long whole = new Infinity(this.number.toString()).whole(new Infinity(number1.number.toString()));
@@ -205,7 +207,9 @@ public class Infinity implements Comparable<Infinity> {
         return Main(this.number);
     }
 
-    //Максимальное
+    /**
+     * Максимальное
+     */
     public String max(Infinity number1) {
 
         int compareNumber = new Infinity(this.number.toString()).compareTo(new Infinity(number1.number.toString()));
@@ -216,7 +220,9 @@ public class Infinity implements Comparable<Infinity> {
         return "Одинаковые числа";
     }
 
-    //Минимальное
+    /**
+     * Минимальное
+     */
     public String min(Infinity number1) {
 
         int compareNumber = new Infinity(this.number.toString()).compareTo(new Infinity(number1.number.toString()));
@@ -236,7 +242,7 @@ public class Infinity implements Comparable<Infinity> {
         if (object instanceof Infinity) {
 
             Infinity other = (Infinity) object;
-            return this.toString().equals(other.toString());
+            return this.number.equals(other.number);
         }
 
         return false;
