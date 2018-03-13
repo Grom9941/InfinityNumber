@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Infinity implements Comparable<Infinity>{
+public class Infinity implements Comparable<Infinity> {
 
     private ArrayList<Byte> number = new ArrayList<>();
 
@@ -12,7 +12,7 @@ public class Infinity implements Comparable<Infinity>{
 
         for (int i = 0; i < string.length(); i++) {
 
-           // if (Character.isDigit(string.charAt(i))) throw new IllegalArgumentException("Не правильная запись числа");
+            if (Character.isDigit(string.charAt(i))) throw new IllegalArgumentException("Не правильная запись числа");
 
             if (string.charAt(i) != '0' || !zero) {
                 number.add((byte) Character.getNumericValue(string.charAt(i)));
@@ -52,7 +52,7 @@ public class Infinity implements Comparable<Infinity>{
     }
 
     /**
-     *Сложение
+     * Сложение
      */
     public String plus(Infinity number1) {
 
@@ -77,7 +77,7 @@ public class Infinity implements Comparable<Infinity>{
     }
 
     /**
-     *Замена символа
+     * Замена символа
      */
     private ArrayList<Byte> change(int i, ArrayList<Byte> array, int value) {
 
@@ -133,14 +133,13 @@ public class Infinity implements Comparable<Infinity>{
     }
 
 
-
     /**
      * Умножение
      */
     public String multiplication(Infinity number1) {
 
         ArrayList<Byte> intermediate = new ArrayList<>();
-        for (int i = 0; i < this.number.size()*number1.number.size()+1; i++) {
+        for (int i = 0; i < this.number.size() * number1.number.size() + 1; i++) {
             intermediate.add((byte) -1);
         }
 
@@ -197,7 +196,7 @@ public class Infinity implements Comparable<Infinity>{
 
         long whole = new Infinity(this.number.toString()).whole(new Infinity(number1.number.toString()));
 
-        for (int i = 0; i < whole; i++){
+        for (int i = 0; i < whole; i++) {
 
             this.number = new Infinity(new Infinity(Main(this.number)).minus(new Infinity(Main(number1.number)))).number;
         }
@@ -229,7 +228,6 @@ public class Infinity implements Comparable<Infinity>{
     }
 
 
-
     @Override
     public boolean equals(Object object) {
 
@@ -258,7 +256,7 @@ public class Infinity implements Comparable<Infinity>{
         StringBuilder string = new StringBuilder();
         for (Byte digit : number) {
 
-                string.append(digit);
+            string.append(digit);
         }
 
         return string.toString();
