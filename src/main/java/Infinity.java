@@ -9,18 +9,47 @@ public class Infinity implements Comparable<Infinity> {
      */
     Infinity(String string) {
         boolean zero = true;
+        int i = 0;
+        
+        while (i < string.length()) {
+            if (string.charAt(i) != '[' && string.charAt(i) != ']' && string.charAt(i) != ',' && string.charAt(i) != ' ') {
+                if (Character.getNumericValue(string.charAt(i)) != 0) {
+                    zero = false;
+                } else {
+                    i++;
+                }
+                // if (!Character.isDigit(string.charAt(i))) throw new IllegalArgumentException("Не правильная запись числа");
 
-        for (int i = 0; i < string.length(); i++) {
+                if (!zero) {
 
-            //if (Character.isDigit(string.charAt(i))) throw new IllegalArgumentException("Не правильная запись числа");
+                    if (i + 2 < string.length() && string.charAt(i+1) != '[' && string.charAt(i+1) != ',' && string.charAt(i+1) != ' ' &&  string.charAt(i+1) != ']' && string.charAt(i+2) != ' ' && string.charAt(i+2) != '[' && string.charAt(i+2) != ',' && string.charAt(i+2) != ']' ) {
 
-            if (string.charAt(i) != '0' || !zero) {
-                number.add((byte) Character.getNumericValue(string.charAt(i)));
-                zero = false;
-            }
+                        if ((Character.getNumericValue(string.charAt(i)) == 1 && Character.getNumericValue(string.charAt(i + 1)) == 2 && Character.getNumericValue(string.charAt(i + 2)) < 7) || (Character.getNumericValue(string.charAt(i)) == 1 && Character.getNumericValue(string.charAt(i + 1)) == 1)) {
+
+                            number.add((byte) (Character.getNumericValue(string.charAt(i)) * 100 + Character.getNumericValue(string.charAt(i + 1)) * 10 + Character.getNumericValue(string.charAt(i + 2))));
+                            i += 3;
+                        } else {
+
+                            number.add((byte) (Character.getNumericValue(string.charAt(i)) * 10 + Character.getNumericValue(string.charAt(i + 1))));
+                            i += 2;
+                        }
+
+                    } else if (i + 1 < string.length() && string.charAt(i+1) != '[' && string.charAt(i+1) != ',' && string.charAt(i+1) != ']' && string.charAt(i+1) != ' ' ) {
+
+                        number.add((byte) (Character.getNumericValue(string.charAt(i)) * 10 + Character.getNumericValue(string.charAt(i + 1))));
+                        i += 2;
+
+                    } else {
+
+                        number.add((byte) Character.getNumericValue(string.charAt(i)));
+                        i++;
+
+                    }
+                }
+            } else i++;
         }
     }
-
+    
     /**
      * Преобразование в строку
      */
@@ -119,7 +148,7 @@ public class Infinity implements Comparable<Infinity> {
 
                 while (this.number.get(j) == 0) {
 
-                    value = ost + this.number.get(j);
+                    value = ost;
                     this.number = change(j, this.number, value);
                     j--;
                 }
@@ -271,10 +300,20 @@ public class Infinity implements Comparable<Infinity> {
 
     @Override
     public int compareTo(Infinity number1) {
-        if (this.number.size() > number1.number.size()) return 1;
-        if (this.number.size() < number1.number.size()) return -1;
+        long lengthThis = 0;
+        long lengthNumber1 = 0;
+        for (Byte digit : this.number){
+            lengthThis+=Math.log10(digit)+1;
+        }
+        for (Byte digit : this.number){
+            lengthNumber1+=Math.log10(digit)+1;
+        }
+        if (lengthThis > lengthNumber1) return 1;
+        if (lengthThis < lengthNumber1) return -1;
 
-        for (int i = 0; i < this.number.size(); i++) {
+
+        for (int i = 0; i < lengthThis; i++) {
+
 
             if (this.number.get(i) > number1.number.get(i)) return 1;
             if (this.number.get(i) < number1.number.get(i)) return -1;
