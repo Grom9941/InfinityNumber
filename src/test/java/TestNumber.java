@@ -12,9 +12,10 @@ public class TestNumber {
 
     @Test
     public  void minus(){
-        Infinity number1 = new Infinity("200");
-        Infinity number2 = new Infinity("77");
-        assertEquals("123",number1.minus(number2));
+//        Infinity number1 = new Infinity("211");
+//        Infinity number2 = new Infinity("10");
+//        assertEquals("201",number1.minus(number2));
+        assertEquals("1990",new Infinity("2000").minus(new Infinity("10")));
 
         try
         {
