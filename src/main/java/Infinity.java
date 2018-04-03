@@ -74,18 +74,6 @@ public class Infinity implements Comparable<Infinity> {
     }
 
     /**
-     * Добавление в начало массива 0
-     */
-    private ArrayList<Byte> add0(int value, ArrayList<Byte> array) {
-
-        for (int i = 0; i < value; i++) {
-            array.add(0, (byte) 0);
-        }
-
-        return array;
-    }
-
-    /**
      * Сложение
      */
     public String plus(Infinity number1) {
@@ -170,13 +158,7 @@ public class Infinity implements Comparable<Infinity> {
             }
 
             value += ost;
-            if (value < 10) {
-                string.append(value);
-                ost = 0;
-            } else {
-                string.append(value % 10);
-                ost = 1;
-            }
+            ost = getOst(value, string);
             if (minusThis == 1) {
                 thisSize -= 1;
                 minusThis = 0;
@@ -217,13 +199,7 @@ public class Infinity implements Comparable<Infinity> {
             }
 
             value += ost;
-            if (value < 10) {
-                string.append(value);
-                ost = 0;
-            } else {
-                string.append(value % 10);
-                ost = 1;
-            }
+            ost = getOst(value, string);
             if (minusThis == 1) {
                 thisSize -= 1;
                 minusThis = 0;
@@ -236,11 +212,11 @@ public class Infinity implements Comparable<Infinity> {
                 if (rangNumber1 == 0) {
                     value += number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
-                }
+                } else
                 if (rangNumber1 == 1) {
                     value += number1.number.get(number1Size - 1) / 10 % 10;
                     rangNumber1 = 2;
-                }
+                } else
                 if (rangNumber1 == 2) {
                     value += number1.number.get(number1Size - 1) / 100;
                     rangNumber1 = 0;
@@ -250,7 +226,7 @@ public class Infinity implements Comparable<Infinity> {
                 if (rangNumber1 == 0) {
                     value += number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
-                }
+                } else
                 if (rangNumber1 == 1) {
                     value += number1.number.get(number1Size - 1) / 10;
                     rangNumber1 = 0;
@@ -262,13 +238,7 @@ public class Infinity implements Comparable<Infinity> {
             }
 
             value += ost;
-            if (value < 10) {
-                string.append(value);
-                ost = 0;
-            } else {
-                string.append(value % 10);
-                ost = 1;
-            }
+            ost = getOst(value, string);
             if (minusNumber1 == 1) {
                 number1Size -= 1;
                 minusNumber1 = 0;
@@ -276,15 +246,18 @@ public class Infinity implements Comparable<Infinity> {
         }
         return string.reverse().toString();
 
-//            value = (this.number.get(i) + number1.number.get(i) + ost) % 10;
-//            ost = (this.number.get(i) + number1.number.get(i)) / 10;
-//
-//            this.number.remove(i);
-//            this.number.add(i, (byte) value);
-//        }
+    }
 
-//        if (ost != 0) this.number.add(0, (byte) ost);
-//        return main(this.number);
+    private int getOst(int value, StringBuilder string) {
+        int ost;
+        if (value < 10) {
+            string.append(value);
+            ost = 0;
+        } else {
+            string.append(value % 10);
+            ost = 1;
+        }
+        return ost;
     }
 
     /**
@@ -312,7 +285,6 @@ public class Infinity implements Comparable<Infinity> {
         StringBuilder string = new StringBuilder();
         int value = 0;
         int value1 = 0;
-        int ost = 0;
         int compareNumber = new Infinity(this.number.toString()).compareTo(new Infinity(number1.number.toString()));
 
         if (compareNumber == 0) return "0";
@@ -496,7 +468,6 @@ public class Infinity implements Comparable<Infinity> {
                 int value1 = 0;
                 int placeNumber = 0;
                 int place = 0;
-                int getResult;
 
                 int thisSize = this.number.size();
                 int number1Size = number1.number.size();
@@ -534,8 +505,6 @@ public class Infinity implements Comparable<Infinity> {
                         minusNumber1 = 1;
                     }
                     while (thisSize > 0){
-
-                       // value = getResult; //+ this.number.get(j) * number1.number.get(i);
 
                         if (this.number.get(thisSize - 1) > 99) {
                             if (rangThis == 0) {
