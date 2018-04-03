@@ -98,7 +98,7 @@ public class Infinity implements Comparable<Infinity> {
     public String plus(Infinity number1) {
 
         int remains = 0;
-        int value = 0;
+        int value;
         int thisSize = this.number.size();
         int number1Size = number1.number.size();
         byte rangThis = 0;
