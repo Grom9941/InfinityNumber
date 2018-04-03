@@ -112,79 +112,89 @@ public class Infinity implements Comparable<Infinity> {
             //Ниже алгоритм достает нужную цифру из массива первого числа
             if (this.number.get(thisSize - 1) > 99) {
                 if (rangThis == 0) {
+
                     value = this.number.get(thisSize - 1) % 10;
                     rangThis = 1;
-                    continue;
-                }
-                if (rangThis == 1) {
+
+                } else if (rangThis == 1) {
+
                     value = this.number.get(thisSize - 1) / 10 % 10;
                     rangThis = 2;
-                    continue;
-                }
-                if (rangThis == 2) {
+
+                } else if (rangThis == 2) {
+
                     value = this.number.get(thisSize - 1) / 100;
                     rangThis = 0;
                     minusThis = 1;
-                    continue;
+
                 }
             } else if (this.number.get(thisSize - 1) > 9) {
                 if (rangThis == 0) {
+
                     value = this.number.get(thisSize - 1) % 10;
                     rangThis = 1;
-                    continue;
-                }
-                if (rangThis == 1) {
+
+                } else if (rangThis == 1) {
+
                     value = this.number.get(thisSize - 1) / 10;
                     rangThis = 0;
                     minusThis = 1;
-                    continue;
+
                 }
             } else if (this.number.get(thisSize - 1) <= 9) {
+
                 value = this.number.get(thisSize - 1);
                 minusThis = 1;
+
             }
 
             //Ниже алгоритм достает нужную цифру из массива второго числа
             if (number1.number.get(number1Size - 1) > 99) {
                 if (rangThis == 0) {
+
                     value += number1.number.get(number1Size - 1) % 10;
                     rangThis = 1;
-                    continue;
-                }
-                if (rangThis == 1) {
+
+                } else if (rangThis == 1) {
+
                     value += number1.number.get(number1Size - 1) / 10 % 10;
                     rangThis = 2;
-                    continue;
-                }
-                if (rangThis == 2) {
+
+                } else if (rangThis == 2) {
+
                     value += number1.number.get(number1Size - 1) / 100;
                     rangThis = 0;
                     minusNumber1 = 1;
-                    continue;
+
                 }
             } else if (number1.number.get(number1Size - 1) > 9) {
                 if (rangThis == 0) {
+
                     value += number1.number.get(number1Size - 1) % 10;
                     rangThis = 1;
-                    continue;
-                }
-                if (rangThis == 1) {
+
+                } else if (rangThis == 1) {
+
                     value += number1.number.get(number1Size - 1) / 10;
                     rangThis = 0;
                     minusNumber1 = 1;
-                    continue;
+
                 }
             } else if (number1.number.get(number1Size - 1) <= 9) {
+
                 value += number1.number.get(number1Size - 1);
                 minusNumber1 = 1;
+
             }
 
             value += remains;
             remains = getRemains(value, string);
+
             if (minusThis == 1) {
                 thisSize -= 1;
                 minusThis = 0;
             }
+
             if (minusNumber1 == 1) {
                 number1Size -= 1;
                 minusNumber1 = 0;
@@ -197,32 +207,45 @@ public class Infinity implements Comparable<Infinity> {
             //Ниже алгоритм достает нужную цифру из массива первого числа
             if (this.number.get(thisSize - 1) > 99) {
                 if (rangThis == 0) {
+
                     value = this.number.get(thisSize - 1) % 10;
                     rangThis = 1;
+
                 } else if (rangThis == 1) {
+
                     value = this.number.get(thisSize - 1) / 10 % 10;
                     rangThis = 2;
+
                 } else if (rangThis == 2) {
+
                     value = this.number.get(thisSize - 1) / 100;
                     rangThis = 0;
                     minusThis = 1;
+
                 }
             } else if (this.number.get(thisSize - 1) > 9) {
                 if (rangThis == 0) {
+
                     value = this.number.get(thisSize - 1) % 10;
                     rangThis = 1;
+
                 } else if (rangThis == 1) {
+
                     value = this.number.get(thisSize - 1) / 10;
                     rangThis = 0;
                     minusThis = 1;
+
                 }
             } else if (this.number.get(thisSize - 1) <= 9) {
+
                 value = this.number.get(thisSize - 1);
                 minusThis = 1;
+
             }
 
             value += remains;
             remains = getRemains(value, string);
+
             if (minusThis == 1) {
                 thisSize -= 1;
                 minusThis = 0;
@@ -234,32 +257,45 @@ public class Infinity implements Comparable<Infinity> {
             //Ниже алгоритм достает нужную цифру из массива второго числа
             if (number1.number.get(number1Size - 1) > 99) {
                 if (rangNumber1 == 0) {
+
                     value += number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
+
                 } else if (rangNumber1 == 1) {
+
                     value += number1.number.get(number1Size - 1) / 10 % 10;
                     rangNumber1 = 2;
+
                 } else if (rangNumber1 == 2) {
+
                     value += number1.number.get(number1Size - 1) / 100;
                     rangNumber1 = 0;
                     minusNumber1 = 1;
+
                 }
             } else if (number1.number.get(number1Size - 1) > 9) {
                 if (rangNumber1 == 0) {
+
                     value += number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
+
                 } else if (rangNumber1 == 1) {
+
                     value += number1.number.get(number1Size - 1) / 10;
                     rangNumber1 = 0;
                     minusNumber1 = 1;
+
                 }
             } else if (number1.number.get(number1Size - 1) <= 9) {
+
                 value += number1.number.get(number1Size - 1);
                 minusNumber1 = 1;
+
             }
 
             value += remains;
             remains = getRemains(value, string);
+
             if (minusNumber1 == 1) {
                 number1Size -= 1;
                 minusNumber1 = 0;
@@ -291,21 +327,6 @@ public class Infinity implements Comparable<Infinity> {
     }
 
     /**
-     * Замена символа
-     * @param i     Место для замены
-     * @param array Массив в котором необходимо проводить замену
-     * @param value Цифра которуб нужно поставить на место замены
-     * @return Массив после замены
-     */
-    private List<Byte> change(int i, List<Byte> array, int value) {
-
-        array.remove(i);
-        array.add(i, (byte) value);
-
-        return array;
-    }
-
-    /**
      * Вычитание
      * @param number1 Число на вход
      * @return Результат операции
@@ -332,60 +353,86 @@ public class Infinity implements Comparable<Infinity> {
             //Ниже алгоритм достает нужную цифру из массива первого числа
             if (this.number.get(thisSize - 1) > 99) {
                 if (rangThis == 0) {
+
                     value = this.number.get(thisSize - 1) % 10;
                     rangThis = 1;
+
                 } else if (rangThis == 1) {
+
                     value = this.number.get(thisSize - 1) / 10 % 10;
                     rangThis = 2;
+
                 } else if (rangThis == 2) {
+
                     value = this.number.get(thisSize - 1) / 100;
                     rangThis = 0;
                     minusThis = 1;
+
                 }
             } else if (this.number.get(thisSize - 1) > 9) {
                 if (rangThis == 0) {
+
                     value = this.number.get(thisSize - 1) % 10;
                     rangThis = 1;
+
                 } else if (rangThis == 1) {
+
                     value = this.number.get(thisSize - 1) / 10;
                     rangThis = 0;
                     minusThis = 1;
+
                 }
             } else if (this.number.get(thisSize - 1) <= 9) {
+
                 value = this.number.get(thisSize - 1);
                 minusThis = 1;
+
             }
 
             //Ниже алгоритм достает нужную цифру из массива второго числа
             if (number1.number.get(number1Size - 1) > 99) {
                 if (rangNumber1 == 0) {
+
                     value1 = number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
+
                 } else if (rangNumber1 == 1) {
+
                     value1 = number1.number.get(number1Size - 1) / 10 % 10;
                     rangNumber1 = 2;
+
                 } else if (rangNumber1 == 2) {
+
                     value1 = number1.number.get(number1Size - 1) / 100;
                     rangNumber1 = 0;
                     minusNumber1 = 1;
+
                 }
             } else if (number1.number.get(number1Size - 1) > 9) {
                 if (rangNumber1 == 0) {
+
                     value1 = number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
+
                 } else if (rangNumber1 == 1) {
+
                     value1 = number1.number.get(number1Size - 1) / 10;
                     rangNumber1 = 0;
                     minusNumber1 = 1;
+
                 }
             } else if (number1.number.get(number1Size - 1) <= 9) {
+
                 value1 = number1.number.get(number1Size - 1);
                 minusNumber1 = 1;
+
             }
+
             if (minusThis == 1) {
                 thisSize -= 1;
                 minusThis = 0;
             }
+
             if (minusNumber1 == 1) {
                 number1Size -= 1;
                 minusNumber1 = 0;
@@ -407,28 +454,40 @@ public class Infinity implements Comparable<Infinity> {
                     //Ниже алгоритм достает нужную цифру из массива первого числа
                     if (this.number.get(j) > 99) {
                         if (rangThis1 == 0) {
+
                             value = this.number.get(j) % 10;
                             rangThis1 = 1;
+
                         } else if (rangThis1 == 1) {
+
                             value = this.number.get(j) / 10 % 10;
                             rangThis1 = 2;
+
                         } else if (rangThis1 == 2) {
+
                             value = this.number.get(j) / 100;
                             rangThis1 = 0;
                             minusThis = 1;
+
                         }
                     } else if (this.number.get(j) > 9) {
                         if (rangThis1 == 0) {
+
                             value = this.number.get(j) % 10;
                             rangThis1 = 1;
+
                         } else if (rangThis1 == 1) {
+
                             value = this.number.get(j) / 10;
                             rangThis1 = 0;
                             minusThis = 1;
+
                         }
                     } else if (this.number.get(j) <= 9) {
+
                         value = this.number.get(j);
                         minusThis = 1;
+
                     }
 
                     byte digit1 = (byte) (this.number.get(j) / 100);
@@ -478,28 +537,40 @@ public class Infinity implements Comparable<Infinity> {
             //Ниже алгоритм достает нужную цифру из массива первого числа
             if (this.number.get(thisSize - 1) > 99) {
                 if (rangThis == 0) {
+
                     value = this.number.get(thisSize - 1) % 10;
                     rangThis = 1;
+
                 } else if (rangThis == 1) {
+
                     value = this.number.get(thisSize - 1) / 10 % 10;
                     rangThis = 2;
+
                 } else if (rangThis == 2) {
+
                     value = this.number.get(thisSize - 1) / 100;
                     rangThis = 0;
                     minusThis = 1;
+
                 }
             } else if (this.number.get(thisSize - 1) > 9) {
                 if (rangThis == 0) {
+
                     value = this.number.get(thisSize - 1) % 10;
                     rangThis = 1;
+
                 } else if (rangThis == 1) {
+
                     value = this.number.get(thisSize - 1) / 10;
                     rangThis = 0;
                     minusThis = 1;
+
                 }
             } else if (this.number.get(thisSize - 1) <= 9) {
+
                 value = this.number.get(thisSize - 1);
                 minusThis = 1;
+
             }
 
             string.append(value);
@@ -522,6 +593,7 @@ public class Infinity implements Comparable<Infinity> {
     public String multiplication(Infinity number1) {
 
         List<Byte> intermediate = new ArrayList<>();
+
         for (int i = 0; i < this.number.size() * number1.number.size() * 9; i++) {
             intermediate.add((byte) -1);
         }
@@ -544,58 +616,82 @@ public class Infinity implements Comparable<Infinity> {
             //Ниже алгоритм достает нужную цифру из массива второго числа
             if (number1.number.get(number1Size - 1) > 99) {
                 if (rangNumber1 == 0) {
+
                     value = number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
+
                 } else if (rangNumber1 == 1) {
+
                     value = number1.number.get(number1Size - 1) / 10 % 10;
                     rangNumber1 = 2;
+
                 } else if (rangNumber1 == 2) {
+
                     value = number1.number.get(number1Size - 1) / 100;
                     rangNumber1 = 0;
                     minusNumber1 = 1;
+
                 }
             } else if (number1.number.get(number1Size - 1) > 9) {
                 if (rangNumber1 == 0) {
+
                     value = number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
+
                 } else if (rangNumber1 == 1) {
+
                     value = number1.number.get(number1Size - 1) / 10;
                     rangNumber1 = 0;
                     minusNumber1 = 1;
+
                 }
             } else if (number1.number.get(number1Size - 1) <= 9) {
+
                 value = number1.number.get(number1Size - 1);
                 minusNumber1 = 1;
+
             }
+
             while (thisSize > 0) {
 
                 //Ниже алгоритм достает нужную цифру из массива первого числа
                 if (this.number.get(thisSize - 1) > 99) {
                     if (rangThis == 0) {
+
                         value1 = this.number.get(thisSize - 1) % 10;
                         rangThis = 1;
+
                     } else if (rangThis == 1) {
+
                         value1 = this.number.get(thisSize - 1) / 10 % 10;
                         rangThis = 2;
+
                     } else if (rangThis == 2) {
+
                         value1 = this.number.get(thisSize - 1) / 100;
                         rangThis = 0;
                         minusThis = 1;
+
                     }
                 } else if (this.number.get(thisSize - 1) > 9) {
                     if (rangThis == 0) {
+
                         value1 = this.number.get(thisSize - 1) % 10;
                         rangThis = 1;
+
                     } else if (rangThis == 1) {
+
                         value1 = this.number.get(thisSize - 1) / 10;
                         rangThis = 0;
                         minusThis = 1;
+
                     }
                 } else if (this.number.get(thisSize - 1) <= 9) {
+
                     value1 = this.number.get(thisSize - 1);
                     minusThis = 1;
-                }
 
+                }
 
                 if (minusThis == 1) {
                     thisSize -= 1;
@@ -605,11 +701,14 @@ public class Infinity implements Comparable<Infinity> {
                 if (intermediate.get(place) == -1) value1 = value * value1;
                 else value1 = intermediate.get(place) + (value * value1);
 
-                intermediate = change(place, intermediate, value1 % 10);
+                intermediate.remove(place);
+                intermediate.add(place, (byte) (value1 % 10));
                 place++;
 
                 if (value1 > 10) {
-                    intermediate = change(place, intermediate, value1 / 10);
+
+                    intermediate.remove(place);
+                    intermediate.add(place, (byte) (value1 /10));
                 }
             }
 
@@ -644,8 +743,10 @@ public class Infinity implements Comparable<Infinity> {
         int compareNumber = new Infinity(this.number.toString()).compareTo(new Infinity(number1.number.toString()));
 
         while (compareNumber > 0 || compareNumber == 0) {
+
             this.number = new Infinity(new Infinity(main(this.number)).minus(new Infinity(main(number1.number)))).number;
             whole++;
+
             compareNumber = new Infinity(this.number.toString()).compareTo(new Infinity(number1.number.toString()));
         }
 
