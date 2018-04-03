@@ -151,20 +151,20 @@ public class Infinity implements Comparable<Infinity> {
 
             //Ниже алгоритм достает нужную цифру из массива второго числа
             if (number1.number.get(number1Size - 1) > 99) {
-                if (rangThis == 0) {
+                if (rangNumber1 == 0) {
 
                     value += number1.number.get(number1Size - 1) % 10;
-                    rangThis = 1;
+                    rangNumber1 = 1;
 
-                } else if (rangThis == 1) {
+                } else if (rangNumber1 == 1) {
 
                     value += number1.number.get(number1Size - 1) / 10 % 10;
-                    rangThis = 2;
+                    rangNumber1 = 2;
 
                 } else {
 
                     value += number1.number.get(number1Size - 1) / 100;
-                    rangThis = 0;
+                    rangNumber1 = 0;
                     minusNumber1 = 1;
 
                 }
@@ -172,12 +172,12 @@ public class Infinity implements Comparable<Infinity> {
                 if (rangThis == 0) {
 
                     value += number1.number.get(number1Size - 1) % 10;
-                    rangThis = 1;
+                    rangNumber1 = 1;
 
                 } else {
 
                     value += number1.number.get(number1Size - 1) / 10;
-                    rangThis = 0;
+                    rangNumber1 = 0;
                     minusNumber1 = 1;
 
                 }
@@ -259,17 +259,17 @@ public class Infinity implements Comparable<Infinity> {
             if (number1.number.get(number1Size - 1) > 99) {
                 if (rangNumber1 == 0) {
 
-                    value += number1.number.get(number1Size - 1) % 10;
+                    value = number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
 
                 } else if (rangNumber1 == 1) {
 
-                    value += number1.number.get(number1Size - 1) / 10 % 10;
+                    value = number1.number.get(number1Size - 1) / 10 % 10;
                     rangNumber1 = 2;
 
                 } else {
 
-                    value += number1.number.get(number1Size - 1) / 100;
+                    value = number1.number.get(number1Size - 1) / 100;
                     rangNumber1 = 0;
                     minusNumber1 = 1;
 
@@ -277,19 +277,19 @@ public class Infinity implements Comparable<Infinity> {
             } else if (number1.number.get(number1Size - 1) > 9) {
                 if (rangNumber1 == 0) {
 
-                    value += number1.number.get(number1Size - 1) % 10;
+                    value = number1.number.get(number1Size - 1) % 10;
                     rangNumber1 = 1;
 
                 } else {
 
-                    value += number1.number.get(number1Size - 1) / 10;
+                    value = number1.number.get(number1Size - 1) / 10;
                     rangNumber1 = 0;
                     minusNumber1 = 1;
 
                 }
             } else {
 
-                value += number1.number.get(number1Size - 1);
+                value = number1.number.get(number1Size - 1);
                 minusNumber1 = 1;
 
             }
@@ -301,6 +301,9 @@ public class Infinity implements Comparable<Infinity> {
                 number1Size -= 1;
                 minusNumber1 = 0;
             }
+        }
+        if (remains == 1) {
+            getRemains(1,string);
         }
         return string.reverse().toString();
 
@@ -429,15 +432,7 @@ public class Infinity implements Comparable<Infinity> {
 
             }
 
-            if (minusThis == 1) {
-                thisSize -= 1;
-                minusThis = 0;
-            }
 
-            if (minusNumber1 == 1) {
-                number1Size -= 1;
-                minusNumber1 = 0;
-            }
 
             if (value >= value1) {
 
@@ -447,55 +442,55 @@ public class Infinity implements Comparable<Infinity> {
                 string.append(10 + value - value1);
 
                 value = 0;
-                int j = thisSize;
+                int thisSize1 = thisSize;
                 int rangThis1 = rangThis;
 
                 while (value == 0) {
 
                     //Ниже алгоритм достает нужную цифру из массива первого числа
-                    if (this.number.get(j) > 99) {
+                    if (this.number.get(thisSize1 - 1) > 99) {
                         if (rangThis1 == 0) {
 
-                            value = this.number.get(j) % 10;
+                            value = this.number.get(thisSize1 - 1) % 10;
                             rangThis1 = 1;
 
                         } else if (rangThis1 == 1) {
 
-                            value = this.number.get(j) / 10 % 10;
+                            value = this.number.get(thisSize1 - 1) / 10 % 10;
                             rangThis1 = 2;
 
                         } else {
 
-                            value = this.number.get(j) / 100;
+                            value = this.number.get(thisSize1 - 1) / 100;
                             rangThis1 = 0;
                             minusThis = 1;
 
                         }
-                    } else if (this.number.get(j) > 9) {
+                    } else if (this.number.get(thisSize1 - 1) > 9) {
                         if (rangThis1 == 0) {
 
-                            value = this.number.get(j) % 10;
+                            value = this.number.get(thisSize1 - 1) % 10;
                             rangThis1 = 1;
 
                         } else {
 
-                            value = this.number.get(j) / 10;
+                            value = this.number.get(thisSize1 - 1) / 10;
                             rangThis1 = 0;
                             minusThis = 1;
 
                         }
                     } else {
 
-                        value = this.number.get(j);
+                        value = this.number.get(thisSize1 - 1);
                         minusThis = 1;
 
                     }
 
-                    byte digit1 = (byte) (this.number.get(j) / 100);
-                    byte digit2 = (byte) (this.number.get(j) / 10 % 10);
-                    byte digit3 = (byte) (this.number.get(j) % 10);
+                    byte digit1 = (byte) (this.number.get(thisSize1 - 1) / 100);
+                    byte digit2 = (byte) (this.number.get(thisSize1 - 1) / 10 % 10);
+                    byte digit3 = (byte) (this.number.get(thisSize1 - 1) % 10);
 
-                    if (digit3 == value) {
+                    if (rangThis1 == 0) {
                         if (value == 0) {
 
                             digit3 = 9;
@@ -503,7 +498,7 @@ public class Infinity implements Comparable<Infinity> {
 
                             digit3 -= 1;
                         }
-                    } else if (digit2 == value) {
+                    } else if (rangThis1 == 1) {
                         if (value == 0) {
 
                             digit2 = 9;
@@ -521,15 +516,24 @@ public class Infinity implements Comparable<Infinity> {
                         }
                     }
 
-                    this.number.remove(j);
-                    this.number.add(j, (byte) (digit1 * 100 + digit2 * 10 + digit3));
+                    this.number.remove(thisSize1 - 1);
+                    this.number.add(thisSize1 - 1, (byte) (digit1 * 100 + digit2 * 10 + digit3));
 
                     if (minusThis == 1) {
-                        j -= 1;
+                        thisSize1 -= 1;
                         minusThis = 0;
                         rangThis1 = 0;
                     }
                 }
+            }
+            if (minusThis == 1) {
+                thisSize -= 1;
+                minusThis = 0;
+            }
+
+            if (minusNumber1 == 1) {
+                number1Size -= 1;
+                minusNumber1 = 0;
             }
         }
         minusThis = 0;
