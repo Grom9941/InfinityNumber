@@ -16,9 +16,9 @@ public class TestNumber {
     @Test
     public  void minus(){
         assertEquals("20100190",new Infinity("20100200").minus(new Infinity("10")));
-//        assertEquals("1990",new Infinity("2000").minus(new Infinity("10")));
-//        assertEquals("2656",new Infinity("3100").minus(new Infinity("444")));
-   //     assertEquals("5291",new Infinity("9090").minus(new Infinity("3799")));
+        assertEquals("1990",new Infinity("2000").minus(new Infinity("10")));
+        assertEquals("2656",new Infinity("3100").minus(new Infinity("444")));
+//        assertEquals("5291",new Infinity("9090").minus(new Infinity("3799")));
 
         try
         {
@@ -64,15 +64,17 @@ public class TestNumber {
 
     @Test
     public void whole(){
-        Infinity number1 = new Infinity("210");
-        Infinity number2 = new Infinity("100");
-        assertEquals(2,number1.whole(number2));
+        assertEquals(2,new Infinity("210").whole(new Infinity("100")));
+        assertEquals(21,new Infinity("21100").whole(new Infinity("1000")));
+        assertEquals(19,new Infinity("0210").whole(new Infinity("11")));
+        assertEquals(0,new Infinity("200").whole(new Infinity("1000")));
     }
 
     @Test
     public void residue(){
-        Infinity number1 = new Infinity("100");
-        Infinity number2 = new Infinity("100");
-        assertEquals("0",number1.residue(number2));
+        assertEquals("0",new Infinity("100").residue(new Infinity("100")));
+        assertEquals("21",new Infinity("121").residue(new Infinity("100")));
+        assertEquals("122",new Infinity("0122").residue(new Infinity("1000")));
+        assertEquals("0",new Infinity("000011").residue(new Infinity("1")));
     }
 }
