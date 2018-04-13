@@ -86,6 +86,12 @@ public class Infinity implements Comparable<Infinity> {
         return string.toString();
     }
 
+    /**
+     * Выделение цифры из байтового числа
+     * @param number Байтовое число
+     * @param rang Место в котором находимся в данный момент в байтовом числе
+     * @return Лист с нужными данными(цифра, место следующее, переход на следующее байтовое число)
+     */
     private List<Number> digit(Byte number, Byte rang){
 
         ArrayList<Number> result = new ArrayList<>();
@@ -134,6 +140,12 @@ public class Infinity implements Comparable<Infinity> {
 
     }
 
+    /**
+     * Количество байтовых чисел для следующего раза
+     * @param minusNumber Переход к другому байтовому числу
+     * @param size Количество байтовых чисел
+     * @return Оставшееся количество байтовых чисел
+     */
     private Integer minusSize(Byte minusNumber,Integer size){
         if (minusNumber == 1) {
             return size-1;
