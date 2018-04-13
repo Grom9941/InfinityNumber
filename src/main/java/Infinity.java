@@ -10,7 +10,7 @@ public class Infinity implements Comparable<Infinity> {
      * Преобразование в массив
      * @param string Бесконечно большое число
      */
-    Infinity(String string) {
+    public Infinity(String string) {
         boolean zero = true;
         int i = 0;
 
