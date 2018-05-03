@@ -172,6 +172,7 @@ public class Infinity implements Comparable<Infinity> {
         byte minusNumber1;
         StringBuilder string = new StringBuilder();
 
+
         while (thisSize > 0 && number1Size > 0) {
 
             digit1 = digit(this.number.get(thisSize - 1), rangThis);
@@ -262,7 +263,7 @@ public class Infinity implements Comparable<Infinity> {
         int thisSize = this.number.size();
         int number1Size = number1.number.size();
         int thisSize1;
-        int rangThis1;
+        byte rangThis1;
         byte rangThis = 0;
         byte rangNumber1 = 0;
         byte minusThis;
@@ -271,14 +272,12 @@ public class Infinity implements Comparable<Infinity> {
         int value;
         int value1;
         int compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
-        int place;
 
         if (compareNumber == 0) return "0";
         if (compareNumber < 0) throw new IllegalArgumentException("Отрицательное число");
 
         while (thisSize > 0 && number1Size > 0) {
 
-            rangThis1 = rangThis;
             digi = digit(this.number.get(thisSize - 1), rangThis);
 
             minusThis = Byte.parseByte(digi.get(2).toString());
@@ -298,85 +297,37 @@ public class Infinity implements Comparable<Infinity> {
 
                 string.append(10 + value - value1);
 
+                rangThis1 = rangThis;
                 value = 0;
                 int minusThis1 = 0;
                 thisSize1 = thisSize;
 
                 while (value == 0) {
+                    int k =rangThis1;
+                    digi = digit(this.number.get(thisSize1 - 1), rangThis1);
 
-                    if (this.number.get(thisSize1 - 1) > 99) {
-                        if (rangThis1 == 0) {
+                    minusThis1 = Byte.parseByte(digi.get(2).toString());
+                    rangThis1 = Byte.parseByte(digi.get(1).toString());
+                    value = Integer.parseInt(digi.get(0).toString());
 
-                            value = this.number.get(thisSize1 - 1) % 10;
-                            place = 0;
-                            rangThis1 = 1;
 
-                        } else if (rangThis1 == 1) {
 
-                            value = this.number.get(thisSize1 - 1) / 10 % 10;
-                            place = 1;
-                            rangThis1 = 2;
-
-                        } else {
-
-                            value = this.number.get(thisSize1 - 1) / 100;
-                            place = 3;
-                            rangThis1 = 0;
-                            minusThis1 = 1;
-
-                        }
-                    } else if (this.number.get(thisSize1 - 1) > 9) {
-                        if (rangThis1 == 0) {
-
-                            value = this.number.get(thisSize1 - 1) % 10;
-                            place = 0;
-                            rangThis1 = 1;
-
-                        } else {
-
-                            value = this.number.get(thisSize1 - 1) / 10;
-                            rangThis1 = 0;
-                            place = 1;
-                            minusThis1 = 1;
-
-                        }
-                    } else {
-
-                        value = this.number.get(thisSize1 - 1);
-                        place = 0;
-                        minusThis1 = 1;
-
-                    }
 
                     byte digit1 = (byte) (this.number.get(thisSize1 - 1) / 100);
                     byte digit2 = (byte) (this.number.get(thisSize1 - 1) / 10 % 10);
                     byte digit3 = (byte) (this.number.get(thisSize1 - 1) % 10);
 
-                    if (place == 0) {
+                    if (k == 0) {
                         if (value == 0) {
-
                             digit3 = 9;
-                        } else {
-
-                            digit3 -= 1;
-                        }
-                    } else if (place == 1) {
+                        } else digit3 -= 1;
+                    } else if (k == 1) {
                         if (value == 0) {
-
                             digit2 = 9;
-                        } else {
-
-                            digit2 -= 1;
-                        }
-                    } else {
-                        if (place == 2) {
-
-                            digit1 = 9;
-                        } else {
-
-                            digit1 -= 1;
-                        }
-                    }
+                        } else digit2 -= 1;
+                    } else if (value == 0) {
+                        digit1 = 9;
+                    } else digit1 -= 1;
 
                     this.number.remove(thisSize1 - 1);
                     this.number.add(thisSize1 - 1, (byte) (digit1 * 100 + digit2 * 10 + digit3));
