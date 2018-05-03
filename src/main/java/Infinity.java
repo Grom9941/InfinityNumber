@@ -465,14 +465,19 @@ public class Infinity implements Comparable<Infinity> {
      */
     public String residue(Infinity number1) {
 
-        long whole = new Infinity(this.number.toString()).whole(new Infinity(number1.number.toString()));
+        int compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
 
-        for (int i = 0; i < whole; i++) {
+        while (compareNumber > 0 || compareNumber == 0) {
+
             this.number = new Infinity(new Infinity(main(this.number)).minus(new Infinity(main(number1.number)))).number;
+
+
+            compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
         }
 
-        if (this.number.size() == 0) return "0";
-        return main(this.number);
+        if (this.number.size()==0) {
+            return "0";
+        } else return main(this.number);
     }
 
     /**
