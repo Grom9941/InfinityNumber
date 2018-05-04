@@ -15,7 +15,6 @@ public class Infinity implements Comparable<Infinity> {
         int i = 0;
 
         while (i < string.length()) {
-
                 if (Character.getNumericValue(string.charAt(i)) != 0) {
                     zero = false;
                 } else if (zero) {
@@ -26,9 +25,7 @@ public class Infinity implements Comparable<Infinity> {
 
                 if (!zero) {
                     if (Character.getNumericValue(string.charAt(i)) == 0) {
-
                         number.add((byte) Character.getNumericValue(string.charAt(i)));
-
                         i++;
                     } else if (i + 2 < string.length()) {
 
@@ -39,27 +36,21 @@ public class Infinity implements Comparable<Infinity> {
                             number.add((byte) (Character.getNumericValue(string.charAt(i)) * 100 +
                              Character.getNumericValue(string.charAt(i + 1)) * 10 +
                               Character.getNumericValue(string.charAt(i + 2))));
-
                             i += 3;
                         } else {
 
                             number.add((byte) (Character.getNumericValue(string.charAt(i)) * 10 +
                              Character.getNumericValue(string.charAt(i + 1))));
-
                             i += 2;
                         }
-
                     } else if (i + 1 < string.length()) {
 
                         number.add((byte) (Character.getNumericValue(string.charAt(i)) * 10 +
                          Character.getNumericValue(string.charAt(i + 1))));
-
                         i += 2;
-
                     } else {
 
                         number.add((byte) Character.getNumericValue(string.charAt(i)));
-
                         i++;
                     }
                 }
@@ -76,7 +67,6 @@ public class Infinity implements Comparable<Infinity> {
         StringBuilder string = new StringBuilder();
 
         for (Byte anArray : array) {
-
             if (anArray != 0 || !zero) {
                 string.append(anArray);
                 zero = false;
@@ -172,17 +162,14 @@ public class Infinity implements Comparable<Infinity> {
         byte minusNumber1;
         StringBuilder string = new StringBuilder();
 
-
         while (thisSize > 0 && number1Size > 0) {
 
             digit1 = digit(this.number.get(thisSize - 1), rangThis);
-
             minusThis = Byte.parseByte(digit1.get(2).toString());
             rangThis = Byte.parseByte(digit1.get(1).toString());
             value = Integer.parseInt(digit1.get(0).toString());
 
             digit1 = digit(number1.number.get(number1Size - 1), rangNumber1);
-
             minusNumber1 = Byte.parseByte(digit1.get(2).toString());
             rangNumber1 = Byte.parseByte(digit1.get(1).toString());
             value += Integer.parseInt(digit1.get(0).toString());
@@ -199,28 +186,24 @@ public class Infinity implements Comparable<Infinity> {
         while (thisSize > 0) {
 
             digit1 = digit(this.number.get(thisSize - 1), rangThis);
-
             minusThis = Byte.parseByte(digit1.get(2).toString());
             rangThis = Byte.parseByte(digit1.get(1).toString());
             value = Integer.parseInt(digit1.get(0).toString());
 
             value += remains;
             remains = getRemains(value, string);
-
             thisSize = minusSize(minusThis,thisSize);
         }
 
         while (number1Size > 0) {
 
             digit1 = digit(number1.number.get(number1Size - 1), rangNumber1);
-
             minusNumber1 = Byte.parseByte(digit1.get(2).toString());
             rangNumber1 = Byte.parseByte(digit1.get(1).toString());
             value = Integer.parseInt(digit1.get(0).toString());
 
             value += remains;
             remains = getRemains(value, string);
-
             number1Size = minusSize(minusNumber1,number1Size);
         }
 
@@ -241,11 +224,9 @@ public class Infinity implements Comparable<Infinity> {
         int remains;
 
         if (value < 10) {
-
             string.append(value);
             remains = 0;
         } else {
-
             string.append(value % 10);
             remains = 1;
         }
@@ -279,53 +260,51 @@ public class Infinity implements Comparable<Infinity> {
         while (thisSize > 0 && number1Size > 0) {
 
             digi = digit(this.number.get(thisSize - 1), rangThis);
-
             minusThis = Byte.parseByte(digi.get(2).toString());
             rangThis = Byte.parseByte(digi.get(1).toString());
             value = Integer.parseInt(digi.get(0).toString());
 
             digi = digit(number1.number.get(number1Size - 1), rangNumber1);
-
             minusNumber1 = Byte.parseByte(digi.get(2).toString());
             rangNumber1 = Byte.parseByte(digi.get(1).toString());
             value1 = Integer.parseInt(digi.get(0).toString());
 
             if (value >= value1) {
-
                 string.append(value - value1);
             } else {
-
                 string.append(10 + value - value1);
 
                 rangThis1 = rangThis;
                 value = 0;
-                int minusThis1 = 0;
+                int minusThis1;
                 thisSize1 = thisSize;
 
                 while (value == 0) {
-                    int k =rangThis1;
-                    digi = digit(this.number.get(thisSize1 - 1), rangThis1);
+                    int helper =rangThis1;
 
+                    digi = digit(this.number.get(thisSize1 - 1), rangThis1);
                     minusThis1 = Byte.parseByte(digi.get(2).toString());
                     rangThis1 = Byte.parseByte(digi.get(1).toString());
                     value = Integer.parseInt(digi.get(0).toString());
-
-
-
 
                     byte digit1 = (byte) (this.number.get(thisSize1 - 1) / 100);
                     byte digit2 = (byte) (this.number.get(thisSize1 - 1) / 10 % 10);
                     byte digit3 = (byte) (this.number.get(thisSize1 - 1) % 10);
 
-                    if (k == 0) {
+                    if (helper == 0) {
+
                         if (value == 0) {
                             digit3 = 9;
                         } else digit3 -= 1;
-                    } else if (k == 1) {
+
+                    } else if (helper == 1) {
+
                         if (value == 0) {
                             digit2 = 9;
                         } else digit2 -= 1;
+
                     } else if (value == 0) {
+
                         digit1 = 9;
                     } else digit1 -= 1;
 
@@ -334,13 +313,11 @@ public class Infinity implements Comparable<Infinity> {
 
                     if (minusThis1 == 1) {
                         thisSize1 -= 1;
-                        minusThis1 = 0;
                         rangThis1 = 0;
                     }
                 }
             }
             thisSize = minusSize(minusThis,thisSize);
-
             number1Size = minusSize(minusNumber1,number1Size);
 
         }
@@ -348,13 +325,11 @@ public class Infinity implements Comparable<Infinity> {
         while (thisSize > 0) {
 
             digi = digit(this.number.get(thisSize - 1), rangThis);
-
             minusThis = Byte.parseByte(digi.get(2).toString());
             rangThis = Byte.parseByte(digi.get(1).toString());
             value = Integer.parseInt(digi.get(0).toString());
 
             string.append(value);
-
             thisSize = minusSize(minusThis,thisSize);
         }
 
@@ -371,7 +346,6 @@ public class Infinity implements Comparable<Infinity> {
 
         List<Byte> intermediate = new ArrayList<>();
         List<Number> digi;
-
         for (int i = 0; i < this.number.size() * number1.number.size() * 9; i++) {
             intermediate.add((byte) -1);
         }
@@ -380,7 +354,6 @@ public class Infinity implements Comparable<Infinity> {
         int value1;
         int placeNumber = 0;
         int place = 0;
-
         int thisSize = this.number.size();
         int number1Size = number1.number.size();
         byte rangThis = 0;
@@ -391,9 +364,7 @@ public class Infinity implements Comparable<Infinity> {
         while (number1Size > 0) {
 
             place = placeNumber;
-
             digi = digit(number1.number.get(number1Size - 1), rangNumber1);
-
             minusNumber1 = Byte.parseByte(digi.get(2).toString());
             rangNumber1 = Byte.parseByte(digi.get(1).toString());
             value = Integer.parseInt(digi.get(0).toString());
@@ -401,13 +372,11 @@ public class Infinity implements Comparable<Infinity> {
             while (thisSize > 0) {
 
                 digi = digit(this.number.get(thisSize - 1), rangThis);
-
                 minusThis = Byte.parseByte(digi.get(2).toString());
                 rangThis = Byte.parseByte(digi.get(1).toString());
                 value1 = Integer.parseInt(digi.get(0).toString());
 
                 thisSize = minusSize(minusThis,thisSize);
-
                 if (intermediate.get(place) == -1) value1 = value * value1;
                 else value1 = intermediate.get(place) + (value * value1);
 
@@ -428,7 +397,6 @@ public class Infinity implements Comparable<Infinity> {
             placeNumber++;
         }
 
-
         List<Byte> result = new ArrayList<>();
         while (place > 0) {
             result.add(intermediate.get(place - 1));
@@ -443,15 +411,12 @@ public class Infinity implements Comparable<Infinity> {
      * @return Результат операции
      */
     public long whole(Infinity number1) {
-
         long whole = 0;
         int compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
 
         while (compareNumber > 0 || compareNumber == 0) {
-
             this.number = new Infinity(new Infinity(main(this.number)).minus(new Infinity(main(number1.number)))).number;
             whole++;
-
             compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
         }
 
@@ -464,14 +429,10 @@ public class Infinity implements Comparable<Infinity> {
      * @return Результат операции
      */
     public String residue(Infinity number1) {
-
         int compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
 
         while (compareNumber > 0 || compareNumber == 0) {
-
             this.number = new Infinity(new Infinity(main(this.number)).minus(new Infinity(main(number1.number)))).number;
-
-
             compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
         }
 
@@ -486,7 +447,6 @@ public class Infinity implements Comparable<Infinity> {
      * @return Результат сравнения
      */
     public String max(Infinity number1) {
-
         int compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
 
         if (compareNumber > 0) return main(this.number);
@@ -501,7 +461,6 @@ public class Infinity implements Comparable<Infinity> {
      * @return Результат сравнения
      */
     public String min(Infinity number1) {
-
         int compareNumber = new Infinity(this.toString()).compareTo(new Infinity(number1.toString()));
 
         if (compareNumber > 0) return main(number1.number);
@@ -513,32 +472,26 @@ public class Infinity implements Comparable<Infinity> {
 
     @Override
     public boolean equals(Object object) {
-
         if (this == object) return true;
 
         if (object instanceof Infinity) {
-
             Infinity other = (Infinity) object;
             return this.number.equals(other.number);
         }
-
         return false;
     }
 
     @Override
     public int hashCode() {
-
         final int prime = 31;
-
         return number.hashCode() * prime;
     }
 
     @Override
     public String toString() {
-
         StringBuilder string = new StringBuilder();
-        for (Byte digit : number) {
 
+        for (Byte digit : number) {
             string.append(digit);
         }
 
